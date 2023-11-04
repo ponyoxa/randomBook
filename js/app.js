@@ -3,10 +3,18 @@ function calcIsbn() {
     const prefix = '978';
     const country = '4';
     const min = 1;
-    const max = 99999999;
-    const randomNum = Math.floor(Math.random() * (max + 1 - min)) + min;
+    let max = "99999999";
+    let padNum = 8;
+    let publisherSelect = document.getElementById('publisherCode');
+    if (publisherSelect.value != '') {
+        let numLen = String(publisherSelect.value).length;
+        max = max.slice(numLen);
+        padNum = max.length;
+    }
     
-    const isbn12 = prefix + country + String(randomNum).padStart(8, '0');
+    const randomNum = Math.floor(Math.random() * (Number(max) + 1 - min)) + min;
+    
+    const isbn12 = prefix + country + publisherSelect.value + String(randomNum).padStart(Number(padNum), '0');
 
     return isbn12 + calcCheckDigit(isbn12);
 }
