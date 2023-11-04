@@ -11,7 +11,12 @@ function calcIsbn() {
     return isbn;
 }
 
+function setSearchUrl(isbn) {
+    document.getElementById('searchUrl').href = 'https://bookmeter.com/search?keyword=' + isbn;
+}
+
 function getIsbn() {
     const isbn = calcIsbn()
     document.getElementById('isbn').innerHTML = isbn;
+    setSearchUrl(isbn);
 }
