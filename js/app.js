@@ -1,22 +1,22 @@
 'use strict'
 
 /**
- * Calc ISBN
+ * Calc ISBN Code
  * 
  * PREFIX: Generally '978' in Japan
  * COUNTRY: '4' for Japan
  * PUBLISHER_SELECT: The number of digits varies by publisher
  * @author ponyoxa
- * @date 2023-11-06
+ * @date 2023-11-08
+ * @param {any} PUBLISHER_SELECT
  * @returns {any}
  */
-function calcIsbn () {
+function calcIsbn (PUBLISHER_SELECT) {
   const PREFIX = '978'
   const COUNTRY = '4'
   const MIN = 1
   let max = '99999999'
   let padNum = 8
-  const PUBLISHER_SELECT = document.getElementById('publisherCode')
   if (PUBLISHER_SELECT?.value !== '') {
     const numLen = String(PUBLISHER_SELECT.value).length
     max = max.slice(numLen)
@@ -35,7 +35,7 @@ function calcIsbn () {
 }
 
 /**
- * Calc CheckDidit
+ * Calc CheckDigit
  * For ISBN 13th digit
  * @author ponyoxa
  * @date 2023-11-06
@@ -71,8 +71,9 @@ function setSearchUrl (isbn) {
  * @date 2023-11-06
  * @returns {any}
  */
-function getIsbn () {
-  const isbn = calcIsbn()
+function getIsbn() {
+  const PUBLISHER_SELECT = document.getElementById('publisherCode')
+  const isbn = calcIsbn(PUBLISHER_SELECT)
   document.getElementById('isbn').textContent = isbn
   setSearchUrl(isbn)
 }
