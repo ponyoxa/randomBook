@@ -8,17 +8,17 @@
  * PUBLISHER_SELECT: The number of digits varies by publisher
  * @author ponyoxa
  * @date 2023-11-08
- * @param {any} PUBLISHER_SELECT
+ * @param {number} PUBLISHER_SELECT
  * @returns {any}
  */
-function calcIsbn (PUBLISHER_SELECT) {
+function calcIsbn (PUBLISHER_SELECT: String) {
   const PREFIX = '978'
   const COUNTRY = '4'
   const MIN = 1
   let max = '99999999'
   let padNum = 8
-  if (PUBLISHER_SELECT?.value !== '') {
-    const numLen = String(PUBLISHER_SELECT.value).length
+  if (PUBLISHER_SELECT !== null) {
+    const numLen = PUBLISHER_SELECT.length
     max = max.slice(numLen)
     padNum = max.length
   }
@@ -28,7 +28,7 @@ function calcIsbn (PUBLISHER_SELECT) {
   const isbn12 =
         PREFIX +
         COUNTRY +
-        PUBLISHER_SELECT.value +
+        PUBLISHER_SELECT +
         String(RANDOM_NUM).padStart(Number(padNum), '0')
 
   return isbn12 + calcCheckDigit(isbn12)
@@ -42,7 +42,7 @@ function calcIsbn (PUBLISHER_SELECT) {
  * @param {any} isbn12
  * @returns {any}
  */
-function calcCheckDigit (isbn12) {
+function calcCheckDigit (isbn12: string) {
   let sum = 0
   for (let i = 0; i < 12; i++) {
     sum += i % 2 === 0 ? parseInt(isbn12[i]) : 3 * parseInt(isbn12[i])
@@ -57,12 +57,12 @@ function calcCheckDigit (isbn12) {
  * (This functionality will be discontinued and replaced with OpenBD api)
  * @author ponyoxa
  * @date 2023-11-06
- * @param {any} isbn
+ * @param {String} isbn
  * @returns void
  */
-function setSearchUrl (isbn) {
-  document.getElementById('searchUrl').href =
-        'https://bookmeter.com/search?keyword=' + isbn
+function setSearchUrl (isbn: String) {
+  const link = <HTMLAnchorElement>document.getElementById('searchUrl')!
+  link.href = 'https://bookmeter.com/search?keyword=' + isbn
 }
 
 /**
@@ -72,8 +72,9 @@ function setSearchUrl (isbn) {
  * @returns {any}
  */
 function getIsbn() {
-  const PUBLISHER_SELECT = document.getElementById('publisherCode')
+  const PUBLISHER_SELECT_DOM = <HTMLInputElement>document.getElementById('publisherCode')!
+  const PUBLISHER_SELECT = PUBLISHER_SELECT_DOM.value
   const isbn = calcIsbn(PUBLISHER_SELECT)
-  document.getElementById('isbn').textContent = isbn
+  document.getElementById('isbn')!.textContent = isbn
   setSearchUrl(isbn)
 }
