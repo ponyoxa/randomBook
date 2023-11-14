@@ -13,7 +13,6 @@
         "quotes": ["error", "double"],
         "semi": ["error", "never", {"beforeStatementContinuationChars": "never"}],
         "semi-spacing": ["error", {"after": true, "before": false}],
-        "semi-style": ["error", "first"],
         "no-unexpected-multiline": "error",
         "no-unreachable": "error"
     }
