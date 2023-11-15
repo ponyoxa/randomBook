@@ -25,7 +25,7 @@ function setSearchUrl (isbn: string) {
  * @date 2023-11-06
  * @returns {any}
  */
-window.getIsbn = () => {
+(window as any).getIsbn = () => {
   const PUBLISHER_SELECT_DOM = <HTMLInputElement>document.getElementById('publisherCode')!
   const PUBLISHER_SELECT = PUBLISHER_SELECT_DOM.value
   const isbn = i.calcIsbn(PUBLISHER_SELECT)
