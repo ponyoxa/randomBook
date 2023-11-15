@@ -11,7 +11,7 @@
  * @param {string} PUBLISHER_SELECT
  * @returns {any}
  */
-function calcIsbn (PUBLISHER_SELECT: string) {
+export function calcIsbn (PUBLISHER_SELECT: string) {
     const PREFIX = '978'
     const COUNTRY = '4'
     const MIN = 1
