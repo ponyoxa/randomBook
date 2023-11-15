@@ -1,10 +1,6 @@
 'use strict'
 import * as a from "./api.ts"
 import * as i from "./isbn.ts"
-// const a = require("./api.ts")
-// const i = require("./isbn.ts")
-// import { sendOpenBDRequest } from "./api"
-// import { calcIsbn } from "./isbn"
 
 /**
  * Set URL for search in bookmeter
