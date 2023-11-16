@@ -1,5 +1,20 @@
 'use strict'
 
+const PREFIXIES = {
+    first: 978,
+    second: 979,
+}
+
+const COUNTRIES = {
+    Ja: 4,
+}
+
+const math = { floor: Math.floor, random: Math.random }
+
+export function mainIsbn() {
+
+}
+
 /**
  * Calc ISBN Code
  * 
@@ -23,7 +38,7 @@ export function calcIsbn (PUBLISHER_SELECT: string) {
         padNum = max.length
     }
 
-    const RANDOM_NUM = Math.floor(Math.random() * (Number(max) + 1 - MIN)) + MIN
+    const RANDOM_NUM = randomNum({math}, max, MIN)
 
     const isbn12 =
         PREFIX +
@@ -32,6 +47,11 @@ export function calcIsbn (PUBLISHER_SELECT: string) {
         String(RANDOM_NUM).padStart(Number(padNum), '0')
 
     return isbn12 + calcCheckDigit(isbn12)
+}
+
+function randomNum({ math }: any, max: string, MIN: number) {
+    const RANDOM_NUM: string = math.floor(math.random() * (Number(max) + 1 - MIN)) + MIN
+    return RANDOM_NUM
 }
 
 /**
