@@ -1,10 +1,6 @@
 'use strict'
 import * as a from "./api.ts"
 import * as i from "./isbn.ts"
-// const a = require("./api.ts")
-// const i = require("./isbn.ts")
-// import { sendOpenBDRequest } from "./api"
-// import { calcIsbn } from "./isbn"
 
 /**
  * Set URL for search in bookmeter
@@ -25,12 +21,17 @@ function setSearchUrl (isbn: string) {
  * @date 2023-11-06
  * @returns {any}
  */
-window.getIsbn = () => {
+(window as any).getIsbn = async () => {
   const PUBLISHER_SELECT_DOM = <HTMLInputElement>document.getElementById('publisherCode')!
   const PUBLISHER_SELECT = PUBLISHER_SELECT_DOM.value
-  const isbn = i.calcIsbn(PUBLISHER_SELECT)
-  document.getElementById('isbn')!.textContent = isbn
-  const res = a.sendOpenBDRequest(isbn)
+  let isbn = i.calcIsbn(PUBLISHER_SELECT)
+  let res = await a.sendOpenBDRequest(isbn)
+  while (res === null) {
+    isbn = i.calcIsbn(PUBLISHER_SELECT)
+    console.log(isbn)
+    res = await a.sendOpenBDRequest(isbn)
+  }
   console.log(res)
+  document.getElementById('isbn')!.textContent = isbn
   setSearchUrl(isbn)
 }
