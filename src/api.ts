@@ -5,7 +5,6 @@ export async function sendOpenBDRequest(isbn: string) {
     return fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log(data[0])
             return data[0]
         })
 }

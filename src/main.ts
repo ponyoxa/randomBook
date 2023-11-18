@@ -24,11 +24,10 @@ function setSearchUrl (isbn: string) {
 (window as any).getIsbn = async () => {
   const PUBLISHER_SELECT_DOM = <HTMLInputElement>document.getElementById('publisherCode')!
   const PUBLISHER_SELECT = PUBLISHER_SELECT_DOM.value
-  let isbn = i.calcIsbn(PUBLISHER_SELECT)
+  let isbn = i.mainIsbn(PUBLISHER_SELECT)
   let res = await a.sendOpenBDRequest(isbn)
   while (res === null) {
-    isbn = i.calcIsbn(PUBLISHER_SELECT)
-    console.log(isbn)
+    isbn = i.mainIsbn(PUBLISHER_SELECT)
     res = await a.sendOpenBDRequest(isbn)
   }
   console.log(res)

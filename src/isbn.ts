@@ -1,18 +1,18 @@
 'use strict'
 
-const PREFIXIES = {
-    first: 978,
-    second: 979,
+const PREFIXES = {
+    first: '978',
+    second: '979',
 }
 
 const COUNTRIES = {
-    Ja: 4,
+    Ja: '4',
 }
 
 const math = { floor: Math.floor, random: Math.random }
 
-export function mainIsbn() {
-
+export function mainIsbn(PUBLISHER_SELECT: string) {
+    return calcIsbn(PUBLISHER_SELECT, PREFIXES.first, COUNTRIES.Ja)
 }
 
 /**
@@ -26,9 +26,7 @@ export function mainIsbn() {
  * @param {string} PUBLISHER_SELECT
  * @returns {any}
  */
-export function calcIsbn (PUBLISHER_SELECT: string) {
-    const PREFIX = '978'
-    const COUNTRY = '4'
+function calcIsbn (PUBLISHER_SELECT: string, PREFIX: string, COUNTRY: string) {
     const MIN = 1
     let max = '99999999'
     let padNum = 8
@@ -67,7 +65,6 @@ function calcCheckDigit (isbn12: string) {
     for (let i = 0; i < 12; i++) {
         sum += i % 2 === 0 ? parseInt(isbn12[i]) : 3 * parseInt(isbn12[i])
     }
-
     const CHECK_DIGIT = (10 - (sum % 10)) % 10
     return CHECK_DIGIT.toString()
 }
