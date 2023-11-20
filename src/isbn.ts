@@ -68,3 +68,13 @@ function calcCheckDigit (isbn12: string) {
     const CHECK_DIGIT = (10 - (sum % 10)) % 10
     return CHECK_DIGIT.toString()
 }
+
+if (import.meta.vitest) {
+    const { it, expect } = import.meta.vitest
+    it('mainIsbn', () => {
+        expect(mainIsbn('99')).toHaveLength(13)
+        expect(mainIsbn('999')).toHaveLength(13)
+        expect(mainIsbn('9999')).toHaveLength(13)
+        expect(mainIsbn('99999')).toHaveLength(13)
+    })
+}
