@@ -16,6 +16,23 @@ export function mainIsbn(PUBLISHER_SELECT: string) {
 }
 
 /**
+ * Test Code of mainIsbn
+ * @author ponyoxa
+ * @date 2023-11-22
+ * @param {any} import.meta.vitest
+ * @returns {any}
+ */
+if (import.meta.vitest) {
+    const { it, expect } = import.meta.vitest
+    it('mainIsbn', () => {
+        expect(mainIsbn('99')).toHaveLength(13)
+        expect(mainIsbn('999')).toHaveLength(13)
+        expect(mainIsbn('9999')).toHaveLength(13)
+        expect(mainIsbn('99999')).toHaveLength(13)
+    })
+}
+
+/**
  * Calc ISBN Code
  * 
  * PREFIX: Generally '978' in Japan
@@ -47,6 +64,15 @@ function calcIsbn (PUBLISHER_SELECT: string, PREFIX: string, COUNTRY: string) {
     return isbn12 + calcCheckDigit(isbn12)
 }
 
+/**
+ * Get random number
+ * @author ponyoxa
+ * @date 2023-11-22
+ * @param {any} {math}:any
+ * @param {any} max:string
+ * @param {any} MIN:number
+ * @returns {any}
+ */
 function randomNum({ math }: any, max: string, MIN: number) {
     const RANDOM_NUM: string = math.floor(math.random() * (Number(max) + 1 - MIN)) + MIN
     return RANDOM_NUM
@@ -69,12 +95,3 @@ function calcCheckDigit (isbn12: string) {
     return CHECK_DIGIT.toString()
 }
 
-if (import.meta.vitest) {
-    const { it, expect } = import.meta.vitest
-    it('mainIsbn', () => {
-        expect(mainIsbn('99')).toHaveLength(13)
-        expect(mainIsbn('999')).toHaveLength(13)
-        expect(mainIsbn('9999')).toHaveLength(13)
-        expect(mainIsbn('99999')).toHaveLength(13)
-    })
-}
