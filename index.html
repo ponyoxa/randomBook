@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
 </head>
 <body>
-    <select name="publisherCode" id="publisherCode">
-        <option value="" selected>指定なし</option>
-        <option value="297">技術評論社</option>
-        <option value="7981">翔泳社</option>
-        <option value="00">岩波書店</option>
-    </select>
-    <button onclick="getIsbn();">本を探す</button>
-    <p id="isbn"></p>
-    <p id="title"></p>
-    <a id="searchUrl" href="" target="_blank">読書メーターで探す</a>
+    <div class="container">
+        <h1>Search Random Book</h1>
+        <button onclick="getIsbn();"><span>未知の本に出会う</span></button><br>
+        <select name="publisherCode" id="publisherCode">
+            <option value="" selected>指定なし</option>
+            <option value="297">技術評論社</option>
+            <option value="7981">翔泳社</option>
+            <option value="00">岩波書店</option>
+        </select>
+        
+        <p id="isbn"></p>
+        <p id="title"></p>
+        <a id="searchUrl" href="" target="_blank">読書メーターで探す</a>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
