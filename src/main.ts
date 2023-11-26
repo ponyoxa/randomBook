@@ -22,12 +22,20 @@ function setSearchUrl (isbn: string) {
  * @returns {any}
  */
 (window as any).getIsbn = async () => {
-  const PUBLISHER_SELECT_DOM = <HTMLInputElement>document.getElementById('publisherCode')!
-  const PUBLISHER_SELECT = PUBLISHER_SELECT_DOM.value
-  let isbn = i.mainIsbn(PUBLISHER_SELECT)
+  let selectedValue: string
+  const radioButtons: HTMLCollectionOf<HTMLInputElement> = document.getElementsByName('publisherCode')
+
+  for (let i = 0; i < radioButtons.length; i++) {
+    if (radioButtons[i].checked) {
+      selectedValue = radioButtons[i].value;
+      break;
+    }
+  }
+
+  let isbn = i.mainIsbn(selectedValue)
   let res = await a.sendOpenBDRequest(isbn)
   while (res === null) {
-    isbn = i.mainIsbn(PUBLISHER_SELECT)
+    isbn = i.mainIsbn(selectedValue)
     res = await a.sendOpenBDRequest(isbn)
   }
   const parsed = JSON.parse(JSON.stringify(res))
@@ -36,4 +44,25 @@ function setSearchUrl (isbn: string) {
   document.getElementById('isbn')!.textContent = isbn
   document.getElementById('title')!.textContent = title
   setSearchUrl(isbn)
+  modalOpen()
 }
+
+const modal = document.querySelector('.js-modal'),
+      //open = document.querySelector('.js-modal-open'),
+      close = document.querySelector('.js-modal-close')
+
+function modalOpen() {
+  modal?.classList.add('is-active')
+}
+
+function modalClose() {
+  modal?.classList.remove('is-active')
+}
+close?.addEventListener('click', modalClose)
+
+function modalOut(e) {
+  if (e.target == modal) {
+    modal?.classList.remove('is-active')
+  }
+}
+addEventListener('click', modalOut)
