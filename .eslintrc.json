@@ -5,15 +5,28 @@
         "node": true
     },
     "extends": "eslint:recommended",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
         "indent": ["error", 4],
-        "quotes": ["error", "double"],
+        "quotes": ["error", "single"],
         "semi": ["error", "never", {"beforeStatementContinuationChars": "never"}],
         "semi-spacing": ["error", {"after": true, "before": false}],
         "no-unexpected-multiline": "error",
         "no-unreachable": "error"
-    }
+    },
+    "globals": {
+		"datasets": false,
+		"label": false,
+		"data": false,
+		"borderColor": false,
+		"prefCode": false,
+		"prefName": false,
+		"NodeListOf": false,
+		"Props": false,
+		"labels": false
+	}
 }
