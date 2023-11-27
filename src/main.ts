@@ -22,8 +22,8 @@ function setSearchUrl (isbn: string) {
  * @returns {any}
  */
 (window as any).getIsbn = async () => {
-  let selectedValue: string
-  const radioButtons: HTMLCollectionOf<HTMLInputElement> = document.getElementsByName('publisherCode')
+  let selectedValue: string = ''
+  const radioButtons = document.getElementsByName('publisherCode') as NodeListOf<HTMLInputElement>
 
   for (let i = 0; i < radioButtons.length; i++) {
     if (radioButtons[i].checked) {
@@ -48,7 +48,6 @@ function setSearchUrl (isbn: string) {
 }
 
 const modal = document.querySelector('.js-modal'),
-      //open = document.querySelector('.js-modal-open'),
       close = document.querySelector('.js-modal-close')
 
 function modalOpen() {
@@ -60,7 +59,7 @@ function modalClose() {
 }
 close?.addEventListener('click', modalClose)
 
-function modalOut(e) {
+function modalOut(e: any) {
   if (e.target == modal) {
     modal?.classList.remove('is-active')
   }
