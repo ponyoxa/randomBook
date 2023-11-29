@@ -11,6 +11,13 @@ const COUNTRIES = {
 
 const math = { floor: Math.floor, random: Math.random }
 
+/**
+ * main function for getting ISBN
+ * @author ponyoxa
+ * @date 2023-11-29
+ * @param PUBLISHER_SELECT:string
+ * @returns string
+ */
 export function mainIsbn(PUBLISHER_SELECT: string) {
     return calcIsbn(PUBLISHER_SELECT, PREFIXES.first, COUNTRIES.Ja)
 }
@@ -38,10 +45,13 @@ if (import.meta.vitest) {
  * PREFIX: Generally '978' in Japan
  * COUNTRY: '4' for Japan
  * PUBLISHER_SELECT: The number of digits varies by publisher
+ * 
  * @author ponyoxa
- * @date 2023-11-08
- * @param {string} PUBLISHER_SELECT
- * @returns {any}
+ * @date 2023-11-29
+ * @param {any} PUBLISHER_SELECT:string
+ * @param {any} PREFIX:string
+ * @param {any} COUNTRY:string
+ * @returns string
  */
 function calcIsbn (PUBLISHER_SELECT: string, PREFIX: string, COUNTRY: string) {
     const MIN = 1

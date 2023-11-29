@@ -41,10 +41,10 @@ function setSearchUrl (isbn: string) {
     const parsed = JSON.parse(JSON.stringify(res))
     const title = parsed['summary']['title']
     console.log(res)
-  document.getElementById('isbn')!.textContent = isbn
-  document.getElementById('title')!.textContent = title
-  setSearchUrl(isbn)
-  modalOpen()
+    document.getElementById('isbn')!.textContent = isbn
+    document.getElementById('title')!.textContent = title
+    setSearchUrl(isbn)
+    modalOpen()
 }
 
 const modal = document.querySelector('.js-modal'),
