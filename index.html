@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Book</title>
+    
+  <script type="module" crossorigin src="/assets/index-f71f0466.js"></script>
+  <link rel="stylesheet" href="/assets/index-46464050.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Random Book</h1>
+        <div id="search_button">
+            <button class="modal-open js-modal-open" onclick="getIsbn();"><span>未知の本に出会う</span></button>
+        </div>
+        
+
+        <div id="search_option">
+            <h3>Options</h3>
+            <div class="search_publisher">
+                <h4>出版者指定</h4>
+                <input type="radio" name="publisherCode" id="option1" value="" checked>
+                <label for="option1">指定なし</label>
+                <input type="radio" name="publisherCode" id="option2" value="297">
+                <label for="option2">技術評論社</label>
+                <input type="radio" name="publisherCode" id="option3" value="7981">
+                <label for="option3">翔泳社</label>
+                <input type="radio" name="publisherCode" id="option4" value="00">
+                <label for="option4">岩波書店</label>
+            </div>
+        </div>
+        
+        
+        
+
+        <div class="modal js-modal">
+            <div class="modal-container">
+                <!-- モーダルを閉じるボタン -->
+                <div class="modal-close js-modal-close">×</div>
+                <!-- モーダル内部のコンテンツ -->
+                <div class="modal-content">
+                    <p id="isbn"></p>
+                    <p id="title"></p>
+                    <a id="searchUrl" href="" target="_blank">読書メーターで探す</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
